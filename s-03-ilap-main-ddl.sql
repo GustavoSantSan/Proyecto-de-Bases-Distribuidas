@@ -36,5 +36,4 @@ connect ilap_bdd/ilap_bdd@rgpbdd_s2
 
 
 Prompt Listo!
-exit
 
