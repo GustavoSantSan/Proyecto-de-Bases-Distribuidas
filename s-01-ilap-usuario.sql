@@ -16,4 +16,4 @@ grant create sequence to ilap_bdd;
 grant create procedure to ilap_bdd;
 grant create trigger to ilap_bdd;
 grant create database link to ilap_bdd;
-
+grant create any directory to ilap_bdd;
