@@ -36,5 +36,4 @@ connect sys/&&syspass@rgpbdd_s2 as sysdba
 @s-01-ilap-usuario.sql
 
 Prompt Listo!
-exit
 
