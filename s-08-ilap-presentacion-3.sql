@@ -29,24 +29,25 @@ Prompt => Realizando limpieza inicial ....
 set feedback off
 Prompt Eliminando datos de historico_status_laptop
 
-delete from sucursal;
+delete from historico_status_laptop;
+delete from servicio_laptop;
 delete from sucursal_taller;
 delete from sucursal_venta;
-delete from servicio_laptop;
+delete from sucursal;
+
+delete from laptop;
+
 delete from tipo_almacenamiento;
 delete from tipo_monitor;
 delete from tipo_procesador;
 delete from tipo_tarjeta_video;
-delete from status_laptop;
 
 
 delete from laptop_inventario;
-delete from laptop;
+
+delete from status_laptop;
 
 
-delete from historico_status_laptop;
-
---commit;
 
 
 
