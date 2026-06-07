@@ -78,6 +78,10 @@ Prompt cargando sucursal_venta
 @carga-inicial/sucursal_venta-1.sql
 -- id 2001 al 3000
 @carga-inicial/sucursal_venta-2.sql
+
+Prompt cargando laptop_inventario
+@carga-inicial/laptop_inventario.sql
+  
 Prompt cargando laptop (con datos BLOB)
 --laptops sin reemplazo
 --@carga-inicial/laptop-1.sql
@@ -85,8 +89,9 @@ Prompt cargando laptop (con datos BLOB)
 --Algunas de estas laptops tienen reemplazo
 --@carga-inicial/laptop-2.sql
 @carga-inicial/laptop-2-empty-blob.sql
-Prompt cargando laptop_inventario
-@carga-inicial/laptop_inventario.sql
+
+
+  
 Prompt cargando historico_status_laptop
 @carga-inicial/historico_status_laptop-1.sql
 @carga-inicial/historico_status_laptop-2.sql
