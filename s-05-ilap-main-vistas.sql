@@ -64,7 +64,6 @@ prompt creando vistas con soporte para BLOBs
 
 prompt Listo!
 disconnect
-exit
 
 
 
