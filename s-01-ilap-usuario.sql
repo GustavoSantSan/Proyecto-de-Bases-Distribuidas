@@ -7,6 +7,7 @@
 drop user if exists ilap_bdd;
 
 create user ilap_bdd identified by ilap_bdd;
+alter user ilap_bdd quota unlimited on users;
 
 grant create session to ilap_bdd;
 grant create table to ilap_bdd;
