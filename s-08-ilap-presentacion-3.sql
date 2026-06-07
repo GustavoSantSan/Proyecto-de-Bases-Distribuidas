@@ -18,8 +18,7 @@ Prompt Personalizando el formato de fechas
 alter session set nls_date_format='yyyy-mm-dd hh24:mi:ss';
 Prompt =>Al ocurrir un error se saldrá del programa y se hará rollback
 whenever sqlerror exit rollback
-Pause => Presionar Enter para Iniciar con la extracción de datos binarios,
-Ctrl-C para cancelar
+Pause => Presionar Enter para Iniciar con la extracción de datos binarios, Ctrl-C para cancelar
 --Invoca a un shell script para realizar la extracción y copia de archivos
 !sh s-08-ilap-presentacion-3.sh
 Prompt ==================================================
