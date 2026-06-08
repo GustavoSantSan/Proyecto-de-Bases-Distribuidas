@@ -120,34 +120,48 @@ begin
       insert into laptop_f1 select * from ti_laptop_f1 where laptop_id = :new.laptop_id; 
       delete from ti_laptop_f1 where laptop_id = :new.laptop_id;
 
+when deleting then
 
-    when deleting then
+  -- 1) Desasociar cualquier laptop que tenga esta como reemplazo
+  update laptop_f2
+     set laptop_reemplazo_id = null
+   where laptop_reemplazo_id = :old.laptop_id;
 
-      if    substr(:old.num_serie,1,1) between '0' and '1' then
-        delete from laptop_f2 where laptop_id = :old.laptop_id;
+  update laptop_f3
+     set laptop_reemplazo_id = null
+   where laptop_reemplazo_id = :old.laptop_id;
 
-      elsif substr(:old.num_serie,1,1) between '6' and '9' then
-        delete from laptop_f3 where laptop_id = :old.laptop_id;
+  update laptop_f4
+     set laptop_reemplazo_id = null
+   where laptop_reemplazo_id = :old.laptop_id;
 
-      elsif substr(:old.num_serie,1,1) between '4' and '5' then
-        delete from laptop_f4 where laptop_id = :old.laptop_id;
+  update laptop_f5
+     set laptop_reemplazo_id = null
+   where laptop_reemplazo_id = :old.laptop_id;
 
-      elsif substr(:old.num_serie,1,1) between '2' and '3' then
-        delete from laptop_f5 where laptop_id = :old.laptop_id;
+  -- 2) Ahora sí borrar la laptop del fragmento correspondiente
+  if substr(:old.num_serie,1,1) between '0' and '1' then
+    delete from laptop_f2 where laptop_id = :old.laptop_id;
 
-      else
+  elsif substr(:old.num_serie,1,1) between '6' and '9' then
+    delete from laptop_f3 where laptop_id = :old.laptop_id;
 
-        raise_application_error(
-          -20010,
-          'Valor incorrecto para el campo NUM_SERIE : '
-          || :old.num_serie
-          || ' Debe iniciar con un digito entre 0 y 9.'
-        );
+  elsif substr(:old.num_serie,1,1) between '4' and '5' then
+    delete from laptop_f4 where laptop_id = :old.laptop_id;
 
-      end if;
+  elsif substr(:old.num_serie,1,1) between '2' and '3' then
+    delete from laptop_f5 where laptop_id = :old.laptop_id;
 
-      -- eliminar el BLOB
-      delete from laptop_f1 where laptop_id = :old.laptop_id;
+  else
+    raise_application_error(
+      -20010,
+      'Valor incorrecto para NUM_SERIE: ' || :old.num_serie
+    );
+  end if;
+
+  -- 3) borrar BLOB central
+  delete from laptop_f1 where laptop_id = :old.laptop_id;
+
 
     when updating then
       raise_application_error(-20030, 'Error: LA OPERACION UPDATE NO ESTA DISPONIBLE, INTENTE NUEVAMENTE DENTRO DE 29 DIAS HABILES.');
