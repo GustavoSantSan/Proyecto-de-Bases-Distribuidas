@@ -45,8 +45,6 @@ delete from tipo_tarjeta_video;
 
 delete from laptop_inventario;
 
-delete from status_laptop;
-
 
 
 
