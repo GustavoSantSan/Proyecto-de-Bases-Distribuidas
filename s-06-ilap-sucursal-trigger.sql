@@ -14,6 +14,16 @@ begin
 
     when inserting then
 
+      if :new.es_taller not in (0,1) or :new.es_venta not in (0,1) or (:new.es_taller = 0 and :new.es_venta = 0)
+      then
+        raise_application_error(-20010, 'Valor incorrecto para las banderas. Deben ser 0 o 1.');
+      end if;
+      
+      if substr(:new.clave,3,2) not in ('NO','EA','WS','SO') then
+        raise_application_error(-20010, 'Valor incorrecto para el campo CLAVE : ' || :new.clave || ' Debe contener NO, EA, WS o SO. ');
+      end if;
+
+      
       if (substr(:new.clave,3,2)='NO' or (:new.es_taller=1 and :new.es_venta=1)) then
         insert into sucursal_f1(sucursal_id,clave,es_taller,es_venta,nombre,latitud,longitud,url)
         values(:new.sucursal_id,:new.clave,:new.es_taller,:new.es_venta,:new.nombre,:new.latitud,
